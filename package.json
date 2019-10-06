@@ -18,10 +18,15 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "jest": "^24.9.0",
     "webpack-dev-server": "^3.8.2"
   },
   "jest": {
-    "testPathIgnorePatterns": ["<rootDir>/config/webpack/*"]
+    "testPathIgnorePatterns": [
+      "<rootDir>/config/webpack/*"
+    ],
+    "setupFilesAfterEnv": ["<rootDir>/app/javascript/setupTests.js"]
   }
 }

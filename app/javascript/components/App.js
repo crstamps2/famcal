@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react'
+import APIKey from './APIKey/APIKey'
 
-const App = () => (
-  <div>
-    
-  </div>
-);
-
-export default App;
+export default class App extends Component {
+  render() {
+    return (
+      <div>
+       <APIKey />
+       <APIKey />
+      </div>
+    )
+  }
+}
