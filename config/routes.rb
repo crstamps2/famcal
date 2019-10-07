@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :keys
+    post 'saveKeys', to: 'keys#save_keys', as: :save_keys
   end
 end

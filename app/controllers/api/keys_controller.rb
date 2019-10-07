@@ -1,13 +1,27 @@
 # frozen_string_literal: true
+require 'pry'
 
 class API::KeysController < ApplicationController
   before_action :set_key, only: %i[show update destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /keys
   # GET /keys.json
   def index
     @keys = Key.all
     render json: @keys
+  end
+
+  def save_keys
+    mom_api_key = saved_keys_params[:momAPIKey]
+    dad_api_key = saved_keys_params[:dadAPIKey]
+    @key_1 = Key.new(mom_api_key)
+    @key_2 = Key.new(dad_api_key)
+    if @key_1.save && @key_2.save
+      render json: [@key_1, @key_2], status: :created
+    else
+      render json: [@key_1.errors, @key_2.errors], status: :unprocessable_entity
+    end
   end
 
   # GET /keys/1
@@ -54,5 +68,9 @@ class API::KeysController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def key_params
     params.require(:key).permit(:name, :value)
+  end
+
+  def saved_keys_params
+    params.require(:keys).permit(:momAPIKey => [:name, :value], :dadAPIKey => [:name, :value])
   end
 end

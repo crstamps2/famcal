@@ -35,6 +35,13 @@ describe API::KeysController, type: :controller do
     }
   }
 
+  let(:other_valid_attributes) { 
+    {
+      name: 'mom_api_key',
+      value: 'someothervaluehere'
+    }
+  }
+
   let(:invalid_attributes) {
     {
       name: nil,
@@ -52,6 +59,14 @@ describe API::KeysController, type: :controller do
       Key.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
+    end
+  end
+
+  describe "POST #save_keys" do
+    fit "returns a success response" do
+      expect {
+        post :save_keys, params: {keys: {dadAPIKey: valid_attributes, momAPIKey: other_valid_attributes}}, session: valid_session
+      }.to change(Key, :count).by(2)
     end
   end
 

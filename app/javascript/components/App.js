@@ -34,7 +34,7 @@ export default class App extends Component {
       <div>
        <APIKey onInputChange={this.handleDadAPIKeyChange} />
        <APIKey onInputChange={this.handleMomAPIKeyChange} />
-       <button id='submit' />
+       <button id='submit' onClick={this.handleSubmit}>Submit</button>
       </div>
     )
   }
