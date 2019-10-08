@@ -3,11 +3,12 @@ import mockAxios from 'jest-mock-axios'
 import React from 'react'
 import App from './App'
 import APIKeysPage from './APIKey/APIKeysPage'
+import APIKey from './APIKey/APIKey'
 
 let wrapper
 
 beforeEach(() => {
-  wrapper = mount(<App />)
+  wrapper = mount(<APIKeysPage />)
 })
 
 afterEach(() => {
@@ -15,7 +16,7 @@ afterEach(() => {
   mockAxios.reset();
 });
 
-it('renders <App />', () => {
+it('renders <APIKeysPage />', () => {
   expect(wrapper).toBeDefined()
 })
 
