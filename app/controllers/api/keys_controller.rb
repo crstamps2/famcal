@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'pry'
 
 class API::KeysController < ApplicationController
   before_action :set_key, only: %i[show update destroy]
