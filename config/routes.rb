@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :keys
+    resources :events
     post 'saveKeys', to: 'keys#save_keys', as: :save_keys
     get 'feed', to: 'feed#index'
   end
