@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import APIKey from './APIKey'
 import axios from 'axios'
+import { withRouter } from 'react-router-dom'
 
-export default class APIKeysPage extends Component {
+class APIKeysPage extends Component {
   state = {
     dadAPIKey: '',
     momAPIKey: ''
@@ -30,7 +31,7 @@ export default class APIKeysPage extends Component {
       }
     })
     .then(function (response) {
-      browserHistory.push("/feed");
+      this.props.history.push('/feed')
     })
     .catch(function (error) {
       console.log(error);
@@ -53,3 +54,5 @@ export default class APIKeysPage extends Component {
 const saveKeys = (keys) => {
   return axios.post('/api/saveKeys', keys)
 }
+
+export default withRouter(APIKeysPage)
